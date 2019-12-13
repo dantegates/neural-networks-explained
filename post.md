@@ -46,9 +46,9 @@ To take the leap from the regression models above to a neural network we simply 
 
 Putting it all together we have
 
-$
+$$
 H=f(X^{T}W+b)
-$
+$$
 
 where $f$ is a differentiable function, known as the "activation", is typically non-linear and applied "element-wise" along its input. Commonly used are the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) and [ReLu](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
 
@@ -59,10 +59,10 @@ Note that $H$ is what is known as a "hidden layer" with $m$ "units".
 What we have just described a "single (hidden) layer neural network" which we could write more explicitly as
 
 $$
-\begin{align}
+\begin{align*}
 &H=f_{1}(X^{T}W_{1})+b_{1}\\
 &y = f_{2}(HW_{2}+b_{2})
-\end{align}
+\end{align*}
 $$
 
 There we have it, matrix multiplication (with a few twists), "nothing more, nothing less".
