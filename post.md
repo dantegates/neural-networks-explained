@@ -6,7 +6,7 @@ Last night - at the first ever [PyData Philly](https://www.meetup.com/PyData-PHL
 
 When I was first starting out in this industry, I found myself at a point where I felt very comfortable, at both a conceptual and working level, with a variety of machine learning models like logistic regression and random forests. This was in 2014, so it naturally wasn't long before I began hearing about neural networks. They sounded cool. They sounded interesting. They sounded mysterious. They sounded intimidating. They sounded like deep magic.
 
-I started reading up on neural networks and consistently came across material that attempted to explain them away with graphical images or biological analogies. All of that is fine, I suppose, but none of it gave me a concrete idea of what a neural network *is*.
+I started reading up on neural networks and consistently came across material that attempted to explain them away with unhelpful [pictures](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/1280px-Colored_neural_network.svg.png) or anecdotes of how people thought the brain worked 60 years ago. All of that is fine, I suppose, but none of it gave me a concrete idea of what a neural network *is* or how to even implement one.
 
 Eventually I had a conversation with a coworker that was a real "a ha!" moment. The phrase that stuck with me was "neural networks are matrix multiplication and stochastic gradient descent, nothing more, nothing less", which coming from a background in math was incredibly helpful.
 
@@ -83,9 +83,48 @@ Note that I didn't say "matrix multiplication all the way down." This was intent
 
 # Motivating neural networks
 
-Once we've established the basic mechanisms that make up a neural network we can motivate why these models are so successful without appealing to [pictures](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/1280px-Colored_neural_network.svg.png) or anecdotes of how people thought the brain worked 60 years ago.
+Once we've established the basic mechanisms that make up a neural network we can motivate why these models are so successful without referencing pictures or bilogical analogies.
 
 Though I hesitate to use this description, let's call neural networks linear regression models on steroids. They are both capable of learning many, many more parameters than a simple linear model *as well* as learning non-linear relationships that we know exist in much of our data. Considering the usefulness these much simpler linear models lend to many applications, it should come as no surprise that these more advanced models can work so well.
+
+# A concrete example with keras
+
+Let's connect what we've learned so far to a simple [keras](https://keras.io/) example. We'll use the `keras` Sequential API to create a simple "feed forward" neural network and take a look at what is going on under the hood.
+
+The following code block creates a feed forward neural network with 5 "hidden layers".
+
+```python
+import keras
+
+m = keras.models.Sequential([
+    keras.layers.Dense(32, activation='relu', input_shape=(20,)),
+    keras.layers.Dense(32, activation='relu'),
+    keras.layers.Dense(1, activation='sigmoid'),
+])
+
+m.summary()
+```
+
+In this example our feature space has dimension $20$ (specified by the `input_shape` parameter). Thus the first `Dense` layer is used to project the input from $R^{20}$ to $R^{32}$, since we specified this layer should have $32$ "hidden units" (as specified by the first argument to `Dense()`. Thus when this layer is added to the model a $20\times 32$ matrix is created along with a $32$ dimensional bias vector for a total of $20\cdot 32 + 32 =672$ "trainable" parameters. In turn, the second `Dense` layer creates a $32\times 32$ matrix and bias vector of length $32$ for a total of $32\cdot 32 + 32 = 1056$ parameters. Finally, the last `Dense` layer transforms the $32$ dimensional output of the second hidden layer back to a single value with a $32\times 1$ matrix and single scalar bias term for a total of $33$ parameters represented by this layer. 
+
+Helpfully, `keras` model objects have a `summary()` attribute that can be called to confirm this. Frequently checking the output of this function is a good habit when getting started with this library.
+
+```
+m.summary()
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense_36 (Dense)             (None, 32)                672       
+_________________________________________________________________
+dense_37 (Dense)             (None, 32)                1056      
+_________________________________________________________________
+dense_38 (Dense)             (None, 1)                 33        
+=================================================================
+Total params: 1,761
+Trainable params: 1,761
+Non-trainable params: 0
+_________________________________________________________________
+```
 
 # See also
 
