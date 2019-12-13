@@ -6,7 +6,7 @@ Last night - at the first ever [PyData Philly](https://www.meetup.com/PyData-PHL
 
 When I was first starting out in this industry, I found myself at a point where I felt very comfortable, at both a conceptual and working level, with a variety of machine learning models like logistic regression and random forests. This was in 2014, so it naturally wasn't long before I began hearing about neural networks. They sounded cool. They sounded interesting. They sounded mysterious. They sounded intimidating. They sounded like deep magic.
 
-I started reading up on neural networks and consistently came across material that attempted to explain them away with unhelpful [pictures](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/1280px-Colored_neural_network.svg.png) or anecdotes of how people thought the brain worked 60 years ago. All of that is fine, I suppose, but none of it gave me a concrete idea of what a neural network *is* or how to even implement one.
+I started reading up on neural networks and consistently came across material that attempted to explain them away by appealing to vague [images](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/1280px-Colored_neural_network.svg.png) or anecdotes of how people thought the brain worked 60 years ago. All of that is fine, I suppose, but none of it gave me a concrete idea of what a neural network *is* or how to even implement one.
 
 Eventually I had a conversation with a coworker that was a real "a ha!" moment. The phrase that stuck with me was "neural networks are matrix multiplication and stochastic gradient descent, nothing more, nothing less", which coming from a background in math was incredibly helpful.
 
@@ -14,7 +14,7 @@ It's this idea that I would like to try and break down in this post for those wh
 
 # Building blocks
 
-Let's start with [linear regression](https://en.wikipedia.org/wiki/Linear_regression). This is a great starting point because it is ubiquitous across so many disciplines and industries and at the same time will lead us to the basic building blocks of neural networks.
+Let's begin with [linear regression](https://en.wikipedia.org/wiki/Linear_regression). This is a great starting point because it is ubiquitous across so many disciplines and industries and at the same time will lead us to the basic building blocks of neural networks.
 
 When I first encountered linear regression it was expressed in an algebraic form such as
 
@@ -140,4 +140,4 @@ As I mentioned at the beginning of this post, I'm not adding anything original t
 
 I suppose I should conclude this post admitting that, although stochastic gradient descent was mentioned in the beginning of this post I never had any real intent of addressing it again.
 
-I'll simply say that when you read "backpropogation" in the literature it is really referring to [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) or extensions thereof. Additionally, where I've explicitly pointed out in this post that a function should be differentiable it's because this is a requirement for leveraging SGD. The rest, at this time, I will leave as an excecise to the reader :).
+I'll simply say that when you read "backpropogation" in the literature it is really referring to [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) or extensions thereof. Additionally, where I've explicitly pointed out in this post that a function should be differentiable it's because this is a requirement for leveraging SGD. The rest, at this time, I will leave as an excercise to the reader :).
